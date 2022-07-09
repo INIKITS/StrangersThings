@@ -1,19 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavList() {
+function NavList(props) {
+    const {isLoggedIn} = props;
+
   let activeStyle = {
     textDecoration: "underline",
   };
 
   let activeClassName = "underline";
 
-  return (
+  return ( 
     <div id="header">
       <h1 id="header-text">Stranger's Things</h1>
       <nav>
         <ul>
-          <li class='nav-text'>
+          <li class="nav-text">
             <NavLink
               to="Posts"
               style={({ isActive }) => ({
@@ -23,7 +25,7 @@ function NavList() {
               Posts
             </NavLink>
           </li>
-          <li>
+          {isLoggedIn ?  <li>
             <NavLink
               to="Profile"
               style={({ isActive }) => ({
@@ -32,7 +34,8 @@ function NavList() {
             >
               Profile
             </NavLink>
-          </li>
+          </li> : null}
+         
           <li>
             <NavLink
               to="/"
@@ -40,7 +43,9 @@ function NavList() {
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}
-            >home</NavLink>
+            >
+              home
+            </NavLink>
           </li>
         </ul>
       </nav>

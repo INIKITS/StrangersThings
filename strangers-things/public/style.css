@@ -13,7 +13,7 @@
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: .35fr 1fr 1fr 1fr;
+  grid-template-rows: .25fr 1fr 1fr .1fr;
 
   grid-template-areas:
     "header header header header"
@@ -55,10 +55,29 @@ li {
 
 #sidebar {
   grid-area: sidebar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #F8BABA;
+  backdrop-filter: blur(5px);
+}
+
+form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * {
+    padding: .4rem;
+    margin-top:.4rem;
 }
 
 #footer {
   grid-area: footer;
+  background-color:  #ffa0a0;
+  backdrop-filter: blur(5px);
 }
 
 button {
@@ -69,5 +88,5 @@ button {
 #footer {
     display:flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }

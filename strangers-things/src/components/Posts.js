@@ -14,20 +14,18 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-
   return (
-    <div id='post-area'>
-         
+    <div id="post-area">
       {allPosts.map((post) => {
-        console.log('post', post)
-        
+        console.log("post", post);
+
         return (
-        <div id='post-card'>
-        <div key={post.author.id}>{post.description}</div>
-        </div>
-        )
+          <div id="post-card">
+            <div key={post.author.id}>{post.description}</div>
+          </div>
+        );
       })}
-      </div>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const BASE_URL = `https://strangers-things.herokuapp.com/api/2204-ftb-web-pt/`
+export const BASE_URL = `https://strangers-things.herokuapp.com/api/2204-ftb-web-pt`
 
 
 export async function getAllPosts() {
@@ -12,4 +12,31 @@ export async function getAllPosts() {
     }catch (error){
         throw error;
     }
+}
+
+export function registerNewUser(username, password, setUserToken,setIsLoggedIn) {
+    // const {username, password, setUserToken} = props
+
+    // console.log('username', username)
+    // console.log('password', password)
+    fetch(`${BASE_URL}/users/register`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    user: {
+      username: `${username}` ,
+      password: `${password}`
+    }
+  })
+}).then(response => response.json())
+  .then(result => {
+    setIsLoggedIn(true);
+    setUserToken(result.data.token)
+    console.log('result', result)
+    console.log('result token:', result.data.token)
+    return result;
+  })
+  .catch(console.error);
 }
