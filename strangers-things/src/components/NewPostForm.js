@@ -14,7 +14,7 @@ const NewPostForm = (props) => {
       <div id="new-post-form">
         <form onSubmit={handleSubmit}>
           <h2>Make a new post!</h2>
-          <label for="title">Title:</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
             id="post-title"
@@ -23,7 +23,7 @@ const NewPostForm = (props) => {
               setNewTitle(e.target.value);
             }}
           ></input>
-          <label for="body">Body:</label>
+          <label htmlFor="body">Body:</label>
           <input
             type="text"
             id="post-body"

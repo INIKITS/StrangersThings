@@ -17,7 +17,7 @@ function NavList(props) {
         <ul>
           <li class="nav-text">
             <NavLink
-              to="Posts"
+              to="posts"
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}
@@ -27,7 +27,7 @@ function NavList(props) {
           </li>
           {isLoggedIn ?  <li>
             <NavLink
-              to="Profile"
+              to="profile"
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}

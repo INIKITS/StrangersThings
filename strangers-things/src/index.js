@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router} from "react-router-dom";
 import { Nav, Posts, NewUserForm, NewPostForm, Footer } from "./components";
@@ -15,6 +15,15 @@ const App = () => {
   console.log('userToken', userToken)
   console.log('isLoggedIn', isLoggedIn)
 
+  useEffect(() => {
+    const checkIsLoggedIn = () => {
+      const user = JSON.parse(localStorage.getItem('user'))
+      if (user.token) {setIsLoggedIn(true)}
+      console.log('it is true')
+    }
+    checkIsLoggedIn();
+
+  },[])
 
 
   return (

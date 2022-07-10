@@ -32,8 +32,11 @@ export function registerNewUser(username, password, setUserToken,setIsLoggedIn) 
   })
 }).then(response => response.json())
   .then(result => {
-    setIsLoggedIn(true);
+    // setIsLoggedIn(true);
     setUserToken(result.data.token)
+    window.localStorage.setItem(
+      'user', JSON.stringify({username: `${username}`, password: `${password}`, token: `${result.data.token}`})
+    )
     console.log('result', result)
     console.log('result token:', result.data.token)
     return result;

@@ -27,15 +27,17 @@ const NewUserForm = (props) => {
             type="text"
             id="login-title"
             name="login"
+            required= {true}
             onChange={(e) => {
               setUsername(e.target.value);
             }}
           ></input>
           <label for="body">Password:</label>
           <input
-            type="text"
+            type="password"
             id="login-password"
             name="password"
+            required={true}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
