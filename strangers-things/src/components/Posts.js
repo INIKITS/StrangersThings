@@ -20,7 +20,7 @@ const Posts = () => {
         // console.log("post", post);
 
         return (
-          <div key={post.author.id} id="post-card">
+          <div key={post._id} id="post-card">
             <div key={post.author.id}>{post.description}</div>
           </div>
         );

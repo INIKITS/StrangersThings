@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import {logout} from "../api"
 
 function NavList(props) {
-    const {isLoggedIn, setUserToken} = props;
+    const {isLoggedIn, setUserToken, setIsLoggedIn} = props;
 
 const handleLogout = () => {
   console.log('logout has been clicked my guy')
-  logout(setUserToken);
+  logout(setUserToken, setIsLoggedIn);
 } 
 
   return ( 
@@ -18,7 +18,7 @@ const handleLogout = () => {
         <li>
             <NavLink
               to="/"
-              exact={true}
+          
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}
@@ -47,7 +47,6 @@ const handleLogout = () => {
             </NavLink>
           </li> <li><NavLink
               to="/"
-              exact={true}
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}

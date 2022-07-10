@@ -14,7 +14,7 @@ export async function getAllPosts() {
     }
 }
 
-export function registerNewUser(username, password, setUserToken) {
+export function registerNewUser(username, password, setUserToken, setIsLoggedIn) {
 
     fetch(`${BASE_URL}/users/register`, {
   method: "POST",
@@ -29,7 +29,7 @@ export function registerNewUser(username, password, setUserToken) {
   })
 }).then(response => response.json())
   .then(result => {
-    // setIsLoggedIn(true);
+    setIsLoggedIn(true);
     setUserToken(result.data.token)
     window.localStorage.setItem(
       'user', JSON.stringify({username: `${username}`, password: `${password}`, token: `${result.data.token}`})
@@ -41,7 +41,8 @@ export function registerNewUser(username, password, setUserToken) {
   .catch(console.error);
 }
 
-export function logout (setUserToken) {
+export function logout (setUserToken, setIsLoggedIn) {
+  setIsLoggedIn(false)
   setUserToken('');
   localStorage.clear();
 

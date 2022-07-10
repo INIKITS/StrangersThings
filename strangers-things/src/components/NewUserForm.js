@@ -22,7 +22,7 @@ const NewUserForm = (props) => {
       <div id="new-post-form">
         <form onSubmit={handleSubmit}>
           <h2>Register!</h2>
-          <label for="title">Username:</label>
+          <label htmlFor="title">Username:</label>
           <input
             type="text"
             id="login-title"
@@ -32,7 +32,7 @@ const NewUserForm = (props) => {
               setUsername(e.target.value);
             }}
           ></input>
-          <label for="body">Password:</label>
+          <label htmlFor="body">Password:</label>
           <input
             type="password"
             id="login-password"

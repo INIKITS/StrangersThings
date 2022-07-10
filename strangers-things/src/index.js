@@ -15,29 +15,29 @@ const App = () => {
   console.log('userToken', userToken)
   console.log('isLoggedIn', isLoggedIn)
 
-  useEffect(() => {
-    const checkIsLoggedIn = () => {
-      const user = JSON.parse(localStorage.getItem('user'))
-      console.log('user.token', user.token)
-      if (userToken) {setIsLoggedIn(true)
-      console.log('it is true')
-    } else{
-      setIsLoggedIn(false)
-    }
-    checkIsLoggedIn();
+  // useEffect(() => {
+  //   const checkIsLoggedIn = () => {
+  //     const user = JSON.parse(localStorage.getItem('user'))
+  //     console.log('user.token', user.token)
+  //     if (user.token) {setIsLoggedIn(true)
+  //     console.log('it is true')
+  //   } else{
+  //     setIsLoggedIn(false)
+  //   }
+  //   checkIsLoggedIn();
 
-  }},[])
+  // }},[])
 
 
   return (
     
     <>
-      < Nav isLoggedIn = {isLoggedIn} setUserToken={setUserToken} />
+      < Nav isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken} />
       <div id='main-content'>
       <Posts />
       </div>
       <div id='sidebar'>
-      {isLoggedIn  ? <NewPostForm setNewTitle={setNewTitle} setNewBody={setNewBody}/> : <NewUserForm setUserToken={setUserToken} setIsLoggedIn = {setIsLoggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>}
+      {isLoggedIn  ? <NewPostForm setNewTitle={setNewTitle} setNewBody={setNewBody}/> : <NewUserForm setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken} setIsLoggedIn = {setIsLoggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>}
       </div>
       <Footer />
       </>
