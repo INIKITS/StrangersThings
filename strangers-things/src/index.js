@@ -18,18 +18,21 @@ const App = () => {
   useEffect(() => {
     const checkIsLoggedIn = () => {
       const user = JSON.parse(localStorage.getItem('user'))
-      if (user.token) {setIsLoggedIn(true)}
+      console.log('user.token', user.token)
+      if (userToken) {setIsLoggedIn(true)
       console.log('it is true')
+    } else{
+      setIsLoggedIn(false)
     }
     checkIsLoggedIn();
 
-  },[])
+  }},[])
 
 
   return (
     
     <>
-      < Nav isLoggedIn = {isLoggedIn} />
+      < Nav isLoggedIn = {isLoggedIn} setUserToken={setUserToken} />
       <div id='main-content'>
       <Posts />
       </div>

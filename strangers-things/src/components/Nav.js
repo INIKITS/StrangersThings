@@ -1,21 +1,32 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import {logout} from "../api"
 
 function NavList(props) {
-    const {isLoggedIn} = props;
+    const {isLoggedIn, setUserToken} = props;
 
-  let activeStyle = {
-    textDecoration: "underline",
-  };
-
-  let activeClassName = "underline";
+const handleLogout = () => {
+  console.log('logout has been clicked my guy')
+  logout(setUserToken);
+} 
 
   return ( 
     <div id="header">
       <h1 id="header-text">Stranger's Things</h1>
       <nav>
         <ul>
-          <li class="nav-text">
+        <li>
+            <NavLink
+              to="/"
+              exact={true}
+              style={({ isActive }) => ({
+                textDecoration: isActive ? "underline" : "none",
+              })}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li className="nav-text">
             <NavLink
               to="posts"
               style={({ isActive }) => ({
@@ -25,7 +36,7 @@ function NavList(props) {
               Posts
             </NavLink>
           </li>
-          {isLoggedIn ?  <li>
+          {isLoggedIn ? <> <li>
             <NavLink
               to="profile"
               style={({ isActive }) => ({
@@ -34,19 +45,16 @@ function NavList(props) {
             >
               Profile
             </NavLink>
-          </li> : null}
-         
-          <li>
-            <NavLink
+          </li> <li><NavLink
               to="/"
               exact={true}
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}
+              onClick={handleLogout}
             >
-              home
-            </NavLink>
-          </li>
+              Log Out
+            </NavLink> </li></>: null}
         </ul>
       </nav>
     </div>

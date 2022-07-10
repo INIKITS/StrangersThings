@@ -14,11 +14,8 @@ export async function getAllPosts() {
     }
 }
 
-export function registerNewUser(username, password, setUserToken,setIsLoggedIn) {
-    // const {username, password, setUserToken} = props
+export function registerNewUser(username, password, setUserToken) {
 
-    // console.log('username', username)
-    // console.log('password', password)
     fetch(`${BASE_URL}/users/register`, {
   method: "POST",
   headers: {
@@ -42,4 +39,10 @@ export function registerNewUser(username, password, setUserToken,setIsLoggedIn) 
     return result;
   })
   .catch(console.error);
+}
+
+export function logout (setUserToken) {
+  setUserToken('');
+  localStorage.clear();
+
 }
