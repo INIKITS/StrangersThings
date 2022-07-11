@@ -15,6 +15,7 @@ const Posts = () => {
   }, []);
 
   return (
+    <div id="main-content">
     <div id="post-area">
       {allPosts.map((post) => {
         // console.log("post", post);
@@ -25,6 +26,7 @@ const Posts = () => {
           </div>
         );
       })}
+    </div>
     </div>
   );
 };

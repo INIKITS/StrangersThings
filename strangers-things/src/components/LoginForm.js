@@ -6,7 +6,9 @@ const handleSubmit = (e) => {
 
 }
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const {setUsername, setPassword} = props;
+
     return (
         <>
         <div id="new-post-form">
@@ -35,6 +37,7 @@ const LoginForm = () => {
             <button type="submit">Sign In</button>
           </form>
         </div>
+       
       </>
 
     )

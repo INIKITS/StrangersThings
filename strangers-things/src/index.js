@@ -2,7 +2,9 @@ import React from "react";
 import { useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router} from "react-router-dom";
+import {Route, Routes} from "react-router-dom"
 import { Nav, Posts, NewUserForm, NewPostForm, Footer } from "./components";
+import LoginForm from "./components/LoginForm";
 
 const App = () => {
   const [username,setUsername] = useState('');
@@ -33,13 +35,19 @@ const App = () => {
     
     <>
       < Nav isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken} />
-      <div id='main-content'>
-      <Posts />
-      </div>
-      <div id='sidebar'>
-      {isLoggedIn  ? <NewPostForm setNewTitle={setNewTitle} setNewBody={setNewBody}/> : <NewUserForm setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken} setIsLoggedIn = {setIsLoggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>}
-      </div>
-      <Footer />
+    < Routes>
+    {/* <Route exact path='/' element={<NewUserForm />}></Route> */}
+      {/* <div id='main-content'> */}
+     <Route  path='/' element={<Posts/>}></Route>
+      {/* </div> */}
+      {/* <div id='sidebar'> */}
+      {isLoggedIn ? <Route path='/new-post' element={<NewPostForm/>}></Route> : null}
+      <Route path='/' element={<NewUserForm/>} />
+      {/* {isLoggedIn  ? <NewPostForm setNewTitle={setNewTitle} setNewBody={setNewBody}/> : <NewUserForm setUserToken={setUserToken} setIsLoggedIn = {setIsLoggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>} */}
+      <Route  path='/login' element={<LoginForm setUsername={setUsername} setPassword={setPassword}/>} ></Route>
+      {/* </div> */}
+      </Routes>
+     <Footer />
       </>
   );
 };

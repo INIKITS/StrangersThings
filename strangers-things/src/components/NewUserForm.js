@@ -19,6 +19,7 @@ const NewUserForm = (props) => {
 
   return (
     <>
+    <div id="side-bar">
       <div id="new-post-form">
         <form onSubmit={handleSubmit}>
           <h2>Register!</h2>
@@ -45,7 +46,9 @@ const NewUserForm = (props) => {
           <button type="submit">Create Account</button>
         </form>
       </div>
+      </div>
     </>
+    
   );
 };
 

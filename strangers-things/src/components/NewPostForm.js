@@ -11,6 +11,7 @@ const NewPostForm = (props) => {
 
   return (
     <>
+      <div id="side-bar">
       <div id="new-post-form">
         <form onSubmit={handleSubmit}>
           <h2>Make a new post!</h2>
@@ -34,6 +35,7 @@ const NewPostForm = (props) => {
           ></input>
           <button type="submit">Post baybeeeee</button>
         </form>
+      </div>
       </div>
     </>
   );
