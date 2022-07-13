@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,6 +12,7 @@ const LoginForm = (props) => {
 
     return (
         <>
+        <div id="side-bar">
         <div id="new-post-form">
           <form onSubmit={handleSubmit}>
             <h2>Login</h2>
@@ -35,7 +37,9 @@ const LoginForm = (props) => {
               }}
             ></input>
             <button type="submit">Sign In</button>
+            <Link to="/">Need an Account?</Link>
           </form>
+          </div>
         </div>
        
       </>

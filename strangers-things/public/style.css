@@ -53,7 +53,7 @@ li {
     grid-area: main;
 }
 
-#sidebar {
+#side-bar {
   grid-area: sidebar;
   display: flex;
   align-items: center;

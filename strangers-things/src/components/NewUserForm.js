@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, Link} from "react-router-dom";
 import { registerNewUser } from "../api";
 
 const NewUserForm = (props) => {
@@ -16,6 +17,11 @@ const NewUserForm = (props) => {
 
     registerNewUser(username, password, setUserToken, setIsLoggedIn);
   };
+
+  // const handleButton = (e) {
+  //   e.preventDefault();
+  //   navigate("./LoginForm")
+  // }
 
   return (
     <>
@@ -44,6 +50,7 @@ const NewUserForm = (props) => {
             }}
           ></input>
           <button type="submit">Create Account</button>
+      <Link to="/login">Have an account? Login Here!</Link>
         </form>
       </div>
       </div>

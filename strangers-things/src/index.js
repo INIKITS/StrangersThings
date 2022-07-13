@@ -44,27 +44,56 @@ const App = () => {
         setIsLoggedIn={setIsLoggedIn}
         setUserToken={setUserToken}
       />
+
       <Routes>
-        <Route exact path="/" element={<App />}>
-          <Route index element={<Home />} />
-        </Route>
-        {/* <div id='main-content'> */}
-        {/* <Route  exact path='/posts' element={<><Posts/> <NewPostForm/> </>}></Route> */}
-        {/* </div> */}
-        {/* <div id='sidebar'> */}
-        {isLoggedIn ? (
-          <Route path="/new-post" element={<NewPostForm />}></Route>
-        ) : null}
-        <Route exact path="/" element={<NewUserForm />} />
-        {/* {isLoggedIn  ? <NewPostForm setNewTitle={setNewTitle} setNewBody={setNewBody}/> : <NewUserForm setUserToken={setUserToken} setIsLoggedIn = {setIsLoggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>} */}
         <Route
+          exact
+          path="/"
+          element={
+            <>
+              <Home />
+              <NewUserForm />
+            </>
+          }
+        />
+
+        <Route
+          exact
+          path="/posts"
+          element={
+            <>
+              <Posts />
+              {isLoggedIn ? (
+                <NewPostForm
+                  setNewTitle={setNewTitle}
+                  setNewBody={setNewBody}
+                />
+              ) : (
+                <NewUserForm
+                  setUserToken={setUserToken}
+                  setIsLoggedIn={setIsLoggedIn}
+                  username={username}
+                  setUsername={setUsername}
+                  password={password}
+                  setPassword={setPassword}
+                />
+              )}
+            </>
+          }
+        />
+
+        <Route
+          exact
           path="/login"
           element={
+            <>
+            < Home />
             <LoginForm setUsername={setUsername} setPassword={setPassword} />
+            </>
           }
-        ></Route>
-        {/* </div> */}
+        />
       </Routes>
+
       <Footer />
     </>
   );
