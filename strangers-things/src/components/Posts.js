@@ -16,7 +16,10 @@ const Posts = () => {
 
   return (
     <div id="main-content">
+      <span id='search-bar-area'>
       <input id='search-bar' type='text' placeholder="search posts"></input>
+      <button id='search-button'>Search</button>
+      </span>
     <div id="post-area">
       {allPosts.map((post) => {
         // console.log("post", post);
