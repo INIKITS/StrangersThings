@@ -7,6 +7,7 @@ export async function getAllPosts() {
     try {
         const response = await fetch(`${BASE_URL}/posts`)
         const data = await response.json();
+        console.log('data', data)
         
         return data;
     }catch (error){

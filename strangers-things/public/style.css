@@ -13,12 +13,12 @@
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: .25fr 1fr 1fr .1fr;
+  grid-template-rows: 0.25fr 1fr 1fr 0.1fr;
 
   grid-template-areas:
     "header header header header"
-    "main main . sidebar"
-    "main main . sidebar"
+    "main main main sidebar"
+    "main main main sidebar"
     "footer footer footer footer";
 }
 
@@ -27,30 +27,89 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FF9E9E;
+  background-color: #ff9e9e;
   filter: drop-shadow(0px 2px 6px black);
 }
 
 #header-text {
-    padding-left: 4rem;
+  padding-left: 4rem;
 }
 ul {
-    display:flex;
-    font-size: 1.4rem;
+  display: flex;
+  font-size: 1.4rem;
 }
 
-ul:last-child{
-    padding-right:4rem;
+ul:last-child {
+  padding-right: 4rem;
 }
 
 li {
-    list-style-type: none;
-    padding-left:2rem;
-    
+  list-style-type: none;
+  padding-left: 2rem;
+}
+#main-content {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-bar {
+  width: 40rem;
+  height: 2rem;
+  margin-top: 2rem;
+  background-color: #ecdada;
+}
+
+#post-area:first-child{
+  margin-top:33rem;
 
 }
-#main-content{
-    grid-area: main;
+
+#post-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 0.2fr 1fr 1fr;
+  grid-template-areas:
+    "card-title card-title . card-title-author"
+    "card-main card-main  card-main  ."
+    "card-edit  card-delete . .";
+
+  align-items: center;
+  background-color: #ecdada;
+  height: 12rem;
+  width: 40rem;
+  margin-top: 4rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.479));
+}
+
+#card-title {
+  grid-area: card-title;
+  margin-top: 0.4rem;
+  padding-left: 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+#card-author {
+  margin-top: 0.4rem;
+  grid-area: card-title-author;
+}
+
+#card-main {
+  grid-area: card-main;
+  padding-left: 1rem;
+}
+
+#card-edit {
+  grid-area: card-edit;
+  margin-left: 1rem;
+}
+
+#card-delete {
+  grid-area: card-delete;
+  margin-left: 2rem;
 }
 
 #side-bar {
@@ -59,26 +118,26 @@ li {
   align-items: center;
   justify-content: center;
 
-  background-color: #F8BABA;
+  background-color: #f8baba;
   backdrop-filter: blur(5px);
 }
 
 form {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form > * {
-    padding: .4rem;
-    margin-top:.4rem;
+  padding: 0.4rem;
+  margin-top: 0.4rem;
 }
 
-#footer {
+/* #footer {
   grid-area: footer;
   background-color:  #ffa0a0;
   backdrop-filter: blur(5px);
-}
+} */
 
 button {
   width: 10rem;
@@ -86,7 +145,10 @@ button {
 }
 
 #footer {
-    display:flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  grid-area: footer;
+  background-color: #ffa0a0;
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
 }

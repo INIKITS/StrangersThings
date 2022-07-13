@@ -16,13 +16,18 @@ const Posts = () => {
 
   return (
     <div id="main-content">
+      <input id='search-bar' type='text'></input>
     <div id="post-area">
       {allPosts.map((post) => {
         // console.log("post", post);
 
         return (
           <div key={post._id} id="post-card">
-            <div key={post.author.id}>{post.description}</div>
+            <span id='card-title'>{post.title} </span>
+            <span id='card-author'>{post.author.username} </span>
+            <div id='card-main'>{post.description}</div>
+            <button id='card-edit'>edit</button>
+            <button id='card-delete'>delete</button>
           </div>
         );
       })}
