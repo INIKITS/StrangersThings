@@ -16,7 +16,7 @@ const Posts = () => {
 
   return (
     <div id="main-content">
-      <input id='search-bar' type='text'></input>
+      <input id='search-bar' type='text' placeholder="search posts"></input>
     <div id="post-area">
       {allPosts.map((post) => {
         // console.log("post", post);

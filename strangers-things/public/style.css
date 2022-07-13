@@ -47,24 +47,38 @@ li {
   list-style-type: none;
   padding-left: 2rem;
 }
+
+
 #main-content {
   grid-area: main;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   justify-content: center;
+  background-color: rgb(255, 247, 247) ;
+}
+
+.home {
+  font-size: 5rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.479));
+  text-decoration: underline;
+
 }
 
 #search-bar {
   width: 40rem;
   height: 2rem;
-  margin-top: 2rem;
-  background-color: #ecdada;
+  /* padding-top: 1rem; */
+  margin-bottom: 1rem;
+  background-color:#fdd1d1;
+  border:none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.479));
+  text-align: center;
 }
 
-#post-area:first-child{
-  margin-top:33rem;
-
+#post-area:first-child {
+  margin-top: 0;
 }
 
 #post-card {
@@ -77,10 +91,10 @@ li {
     "card-edit  card-delete . .";
 
   align-items: center;
-  background-color: #ecdada;
+  background-color: #fdd1d1;
   height: 12rem;
   width: 40rem;
-  margin-top: 4rem;
+  margin-bottom: 4rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.479));
 }
 
@@ -127,21 +141,25 @@ form {
   flex-direction: column;
   align-items: center;
 }
+form > input {
+  background-color:#fdd1d1;
+  border:none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.479));
+}
+
+input:focus{
+  outline:none;
+}
 
 form > * {
   padding: 0.4rem;
   margin-top: 0.4rem;
 }
 
-/* #footer {
-  grid-area: footer;
-  background-color:  #ffa0a0;
-  backdrop-filter: blur(5px);
-} */
-
 button {
   width: 10rem;
   height: 2rem;
+  margin-top:2rem;
 }
 
 #footer {
