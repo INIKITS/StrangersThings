@@ -6,8 +6,8 @@ function NavList(props) {
     const {isLoggedIn, setUserToken, setIsLoggedIn} = props;
 
 const handleLogout = () => {
-  console.log('logout has been clicked my guy')
   logout(setUserToken, setIsLoggedIn);
+  
 } 
 
   return ( 

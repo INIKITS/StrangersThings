@@ -6,7 +6,7 @@ const NewPostForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("it been clicked");
+    console.log("it (newpost) been clicked");
   };
 
   return (

@@ -1,18 +1,41 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-
-const handleSubmit = (e) => {
-    e.preventDefault();
+import React from "react";
+import { Link } from "react-router-dom";
+import { login } from "../api";
 
 
-}
+
+
 
 const LoginForm = (props) => {
-    const {setUsername, setPassword} = props;
 
-    return (
-        <>
-        <div id="side-bar">
+  const [error, setError] = React.useState(null)
+  const { setUsername, username, setPassword, password } = props;
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    login(username, password,setUsername,setPassword);
+
+    // if (result.success){
+    //   const response = await result.json();
+
+    //   const result = await response;
+
+    //   console.log('result', result)
+
+
+    // }else{
+  
+    // setError(result.error.message)
+
+    // console.log('result', result)
+    // }
+  
+  };
+
+  return (
+    <>
+      <div id="side-bar">
         <div id="new-post-form">
           <form onSubmit={handleSubmit}>
             <h2>Login</h2>
@@ -21,7 +44,7 @@ const LoginForm = (props) => {
               type="text"
               id="login-title"
               name="login"
-              required= {true}
+              required={true}
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
@@ -36,15 +59,14 @@ const LoginForm = (props) => {
                 setPassword(e.target.value);
               }}
             ></input>
+            <p>{error}</p>
             <button type="submit">Sign In</button>
             <Link to="/">Need an Account?</Link>
           </form>
-          </div>
         </div>
-       
-      </>
-
-    )
-}
+      </div>
+    </>
+  );
+};
 
 export default LoginForm;
