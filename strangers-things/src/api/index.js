@@ -17,7 +17,9 @@ export function registerNewUser(
   username,
   password,
   setUserToken,
-  setIsLoggedIn
+  setIsLoggedIn,
+  setErrorMessage,
+  setCallSuccess
 ) {
   fetch(`${BASE_URL}/users/register`, {
     method: "POST",
@@ -26,49 +28,67 @@ export function registerNewUser(
     },
     body: JSON.stringify({
       user: {
-        username,
-        password,
+        username: `${username}`,
+        password: `${password}`,
       },
     }),
   })
     .then((response) => response.json())
     .then((result) => {
-      setIsLoggedIn(true);
-      setUserToken(result.data.token);
-      window.localStorage.setItem(
-        "user",
-        JSON.stringify({
-          username,
-          password,
-          token: result.data.token,
-        })
-      );
+      console.log(["result", result]);
+      if (result.data?.token) {
+        setUserToken(result.data.token);
+        window.localStorage.setItem(
+          "user",
+          JSON.stringify({
+            username: `${username}`,
+            password: `${password}`,
+            token: `${result.data.token}`,
+          })
+        );
+        setIsLoggedIn(true);
+      } else if (result.error.message) {
+        console.log(result.error.message);
+        setErrorMessage(result.error.message);
+        setCallSuccess(false);
+        setTimeout(() => {
+          setCallSuccess(true)
+        }, 2000);
+      }
       return result;
     })
     .catch(console.error);
 }
 
-export function login(username, password, setUsername, setPassword) {
+export function login(username, password, setUsername, setPassword, setUserToken, setIsLoggedIn, setError, setCallSuccess) {
   console.log("login has been called");
-  fetch(
-    "https://strangers-things.herokuapp.com/api/COHORT-NAME/users/login",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  fetch(`${BASE_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user: {
+        username: `${username}`,
+        password: `${password}`,
       },
-      body: JSON.stringify({
-        user: {
-          username,
-          password,
-        },
-      }),
-    }
-  )
+    }),
+  })
     .then((response) => response.json())
     .then((result) => {
-      // setUsername("");
-      // setPassword("");
+      console.log('result', result)
+
+      if (result.success){
+        setUserToken(result.data.token)
+        setIsLoggedIn(true);
+
+      } else if (result.error.message) {
+        setError(result.error.message)
+        setCallSuccess(false);
+        setTimeout(() => {
+          setCallSuccess(true)
+        }, 2000);
+      }
 
       return result;
     })

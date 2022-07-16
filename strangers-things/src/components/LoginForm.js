@@ -2,19 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { login } from "../api";
 
-
-
-
-
 const LoginForm = (props) => {
-
-  const [error, setError] = React.useState(null)
-  const { setUsername, username, setPassword, password } = props;
+  const [error, setError] = React.useState(null);
+  const {
+    setUsername,
+    username,
+    setPassword,
+    password,
+    setUserToken,
+    setIsLoggedIn,
+    callSuccess,
+    setCallSuccess,
+  } = props;
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
-    login(username, password,setUsername,setPassword);
+    login(
+      username,
+      password,
+      setUsername,
+      setPassword,
+      setUserToken,
+      setIsLoggedIn,
+      setError,
+      setCallSuccess
+    );
 
     // if (result.success){
     //   const response = await result.json();
@@ -23,14 +35,12 @@ const LoginForm = (props) => {
 
     //   console.log('result', result)
 
-
     // }else{
-  
+
     // setError(result.error.message)
 
     // console.log('result', result)
     // }
-  
   };
 
   return (
@@ -59,7 +69,7 @@ const LoginForm = (props) => {
                 setPassword(e.target.value);
               }}
             ></input>
-            <p>{error}</p>
+            {callSuccess ? null : <p>{error}</p>}
             <button type="submit">Sign In</button>
             <Link to="/">Need an Account?</Link>
           </form>

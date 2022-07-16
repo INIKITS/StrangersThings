@@ -20,6 +20,8 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [callSuccess, setCallSuccess] = useState(true);
 
   console.log("userToken", userToken);
   console.log("isLoggedIn", isLoggedIn);
@@ -39,17 +41,20 @@ const App = () => {
           element={
             <>
               <Home />
-            {isLoggedIn ? null : 
-
-
-              <NewUserForm
-                setUserToken={setUserToken}
-                setIsLoggedIn={setIsLoggedIn}
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-              />}
+              {isLoggedIn ? null : (
+                <NewUserForm
+                  setUserToken={setUserToken}
+                  setIsLoggedIn={setIsLoggedIn}
+                  username={username}
+                  setUsername={setUsername}
+                  password={password}
+                  setPassword={setPassword}
+                  errorMessage={errorMessage}
+                  setErrorMessage={setErrorMessage}
+                  callSuccess={callSuccess}
+                  setCallSuccess={setCallSuccess}
+                />
+              )}
             </>
           }
         />
@@ -73,6 +78,10 @@ const App = () => {
                   setUsername={setUsername}
                   password={password}
                   setPassword={setPassword}
+                  errorMessage={errorMessage}
+                  setErrorMessage={setErrorMessage}
+                  callSuccess={callSuccess}
+                  setCallSuccess={setCallSuccess}
                 />
               )}
             </>
@@ -85,7 +94,18 @@ const App = () => {
           element={
             <>
               <Home />
-              <LoginForm setUsername={setUsername} setPassword={setPassword} username={username} password={password} />
+              <LoginForm
+                setUserToken={setUserToken}
+                setIsLoggedIn={setIsLoggedIn}
+                setUsername={setUsername}
+                setPassword={setPassword}
+                username={username}
+                password={password}
+                errorMessage={errorMessage}
+                setErrorMessage={setErrorMessage}
+                callSuccess={callSuccess}
+                setCallSuccess={setCallSuccess}
+              />
             </>
           }
         />
