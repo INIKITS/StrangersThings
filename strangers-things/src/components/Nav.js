@@ -1,24 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {logout} from "../api"
+import { logout } from "../api";
 
 function NavList(props) {
-    const {isLoggedIn, setUserToken, setIsLoggedIn} = props;
+  const { isLoggedIn, setUserToken, setIsLoggedIn } = props;
 
-const handleLogout = () => {
-  logout(setUserToken, setIsLoggedIn);
-  
-} 
+  const handleLogout = () => {
+    logout(setUserToken, setIsLoggedIn);
+  };
 
-  return ( 
+  return (
     <div id="header">
       <h1 id="header-text">Stranger's Things</h1>
       <nav>
         <ul>
-        <li>
+          <li>
             <NavLink
               to="/"
-          
               style={({ isActive }) => ({
                 textDecoration: isActive ? "underline" : "none",
               })}
@@ -36,24 +34,32 @@ const handleLogout = () => {
               Posts
             </NavLink>
           </li>
-          {isLoggedIn ? <> <li>
-            <NavLink
-              to="profile"
-              style={({ isActive }) => ({
-                textDecoration: isActive ? "underline" : "none",
-              })}
-            >
-              Profile
-            </NavLink>
-          </li> <li><NavLink
-              to="/"
-              style={({ isActive }) => ({
-                textDecoration: isActive ? "underline" : "none",
-              })}
-              onClick={handleLogout}
-            >
-              Log Out
-            </NavLink> </li></>: null}
+          {isLoggedIn ? (
+            <>
+              {" "}
+              <li>
+                <NavLink
+                  to="profile"
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? "underline" : "none",
+                  })}
+                >
+                  Profile
+                </NavLink>
+              </li>{" "}
+              <li>
+                <NavLink
+                  to="/"
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? "underline" : "none",
+                  })}
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </NavLink>{" "}
+              </li>
+            </>
+          ) : null}
         </ul>
       </nav>
     </div>

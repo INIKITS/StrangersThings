@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import {
   Home,
   Nav,
+  Profile,
   Posts,
   LoginForm,
   NewUserForm,
@@ -109,6 +110,8 @@ const App = () => {
             </>
           }
         />
+
+        <Route exact path="/profile" element={<Profile />} />
       </Routes>
 
       <Footer />
