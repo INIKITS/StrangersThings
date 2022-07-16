@@ -23,6 +23,7 @@ const App = () => {
   const [newBody, setNewBody] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [callSuccess, setCallSuccess] = useState(true);
+  const [allPosts, setAllPosts] = useState([]);
 
   console.log("userToken", userToken);
   console.log("isLoggedIn", isLoggedIn);
@@ -65,11 +66,16 @@ const App = () => {
           path="/posts"
           element={
             <>
-              <Posts />
+              <Posts setAllPosts={setAllPosts} allPosts={allPosts} />
               {isLoggedIn ? (
                 <NewPostForm
+                  allPosts={allPosts}
+                  setAllPosts={setAllPosts}
                   setNewTitle={setNewTitle}
                   setNewBody={setNewBody}
+                  newTitle={newTitle}
+                  newBody={newBody}
+                  userToken={userToken}
                 />
               ) : (
                 <NewUserForm

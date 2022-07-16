@@ -2,17 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../api";
 
-const Posts = () => {
-  const [allPosts, setAllPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const data = await getAllPosts();
-
-      setAllPosts(data.data.posts);
-    };
-    fetchPosts();
-  }, []);
+const Posts = (props) => {
+  const { allPosts, setAllPosts } = props;
 
   return (
     <div id="main-content">
@@ -26,6 +17,7 @@ const Posts = () => {
             <div key={post._id} id="post-card">
               <span id="card-title">{post.title} </span>
               <span id="card-author">{post.author.username} </span>
+              <span id="card-price">{post.price}</span>
               <div id="card-main">{post.description}</div>
               <button id="card-edit">edit</button>
               <button id="card-delete">delete</button>

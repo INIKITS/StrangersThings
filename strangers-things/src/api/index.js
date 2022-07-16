@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 
 export const BASE_URL = `https://strangers-things.herokuapp.com/api/2204-ftb-web-pt`;
 
@@ -104,6 +105,7 @@ export function login(
 }
 
 export function getProfile(userToken, setProfileInfo) {
+  console.log("getprofile called");
   fetch(`${BASE_URL}/users/me`, {
     headers: {
       "Content-Type": "application/json",
@@ -114,6 +116,49 @@ export function getProfile(userToken, setProfileInfo) {
     .then((result) => {
       setProfileInfo(result);
       return result;
+    })
+    .catch(console.error);
+}
+
+export function makeNewPost(
+  setAllPosts,
+  newTitle,
+  newBody,
+  price,
+  willDeliver,
+  userToken
+) {
+  console.log("willDeliver", willDeliver);
+  console.log("newpost called");
+
+  fetch(`${BASE_URL}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
+    body: JSON.stringify({
+      post: {
+        title: `${newTitle}`,
+        description: `${newBody}`,
+        price: `${price}`,
+        willDeliver: `${willDeliver}`,
+      },
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      getAllPosts();
+
+      useEffect(() => {
+        const fetchPosts = async () => {
+          const data = await getAllPosts();
+
+          setAllPosts(data.data.posts);
+        };
+        fetchPosts();
+      }, []);
     })
     .catch(console.error);
 }
