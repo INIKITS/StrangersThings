@@ -52,7 +52,7 @@ export function registerNewUser(
         setErrorMessage(result.error.message);
         setCallSuccess(false);
         setTimeout(() => {
-          setCallSuccess(true)
+          setCallSuccess(true);
         }, 2000);
       }
       return result;
@@ -60,7 +60,16 @@ export function registerNewUser(
     .catch(console.error);
 }
 
-export function login(username, password, setUsername, setPassword, setUserToken, setIsLoggedIn, setError, setCallSuccess) {
+export function login(
+  username,
+  password,
+  setUsername,
+  setPassword,
+  setUserToken,
+  setIsLoggedIn,
+  setError,
+  setCallSuccess
+) {
   console.log("login has been called");
   fetch(`${BASE_URL}/users/login`, {
     method: "POST",
@@ -76,20 +85,34 @@ export function login(username, password, setUsername, setPassword, setUserToken
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log('result', result)
+      console.log("result", result);
 
-      if (result.success){
-        setUserToken(result.data.token)
+      if (result.success) {
+        setUserToken(result.data.token);
         setIsLoggedIn(true);
-
       } else if (result.error.message) {
-        setError(result.error.message)
+        setError(result.error.message);
         setCallSuccess(false);
         setTimeout(() => {
-          setCallSuccess(true)
+          setCallSuccess(true);
         }, 2000);
       }
 
+      return result;
+    })
+    .catch(console.error);
+}
+
+export function getProfile(userToken, setProfileInfo) {
+  fetch(`${BASE_URL}/users/me`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      setProfileInfo(result);
       return result;
     })
     .catch(console.error);

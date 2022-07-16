@@ -111,7 +111,11 @@ const App = () => {
           }
         />
 
-        <Route exact path="/profile" element={<Profile />} />
+        <Route
+          exact
+          path="/profile"
+          element={<Profile userToken={userToken} />}
+        />
       </Routes>
 
       <Footer />
