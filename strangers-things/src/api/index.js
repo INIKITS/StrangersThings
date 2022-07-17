@@ -3,12 +3,12 @@ import { useEffect } from "react";
 
 export const BASE_URL = `https://strangers-things.herokuapp.com/api/2204-ftb-web-pt`;
 
-export async function getAllPosts() {
+export async function getAllPosts(setAllPosts) {
   try {
     const response = await fetch(`${BASE_URL}/posts`);
     const data = await response.json();
 
-    return data;
+    return setAllPosts(data);
   } catch (error) {
     throw error;
   }
@@ -71,7 +71,6 @@ export function login(
   setError,
   setCallSuccess
 ) {
-  console.log("login has been called");
   fetch(`${BASE_URL}/users/login`, {
     method: "POST",
     headers: {
@@ -86,8 +85,6 @@ export function login(
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log("result", result);
-
       if (result.success) {
         setUserToken(result.data.token);
         setIsLoggedIn(true);
@@ -105,7 +102,6 @@ export function login(
 }
 
 export function getProfile(userToken, setProfileInfo) {
-  console.log("getprofile called");
   fetch(`${BASE_URL}/users/me`, {
     headers: {
       "Content-Type": "application/json",
@@ -151,14 +147,14 @@ export function makeNewPost(
       console.log(result);
       getAllPosts();
 
-      useEffect(() => {
-        const fetchPosts = async () => {
-          const data = await getAllPosts();
+      // useEffect(() => {
+      //   const fetchPosts = async () => {
+      //     const data = await getAllPosts();
 
-          setAllPosts(data.data.posts);
-        };
-        fetchPosts();
-      }, []);
+      //     setAllPosts(data.data.posts);
+      //   };
+      //   fetchPosts();
+      // }, []);
     })
     .catch(console.error);
 }

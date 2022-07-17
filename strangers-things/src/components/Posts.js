@@ -1,9 +1,23 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { getAllPosts } from "../api";
+import { useEffect } from "react";
 
 const Posts = (props) => {
+  console.log("getAllPosts", getAllPosts);
+
   const { allPosts, setAllPosts } = props;
+
+  // const fetchAllPosts = async () => {
+  //   const request = getAllPosts(setAllPosts);
+
+  // }
+
+  useEffect(() => {
+    // fetchAllPosts();
+    getAllPosts(setAllPosts);
+  }, []);
+
+  console.log("allPosts", allPosts);
 
   return (
     <div id="main-content">
@@ -12,7 +26,8 @@ const Posts = (props) => {
         <button id="search-button">Search</button>
       </span>
       <div id="post-area">
-        {allPosts.map((post) => {
+        {allPosts.data.posts.map((post) => {
+          console.log("post", post);
           return (
             <div key={post._id} id="post-card">
               <span id="card-title">{post.title} </span>
