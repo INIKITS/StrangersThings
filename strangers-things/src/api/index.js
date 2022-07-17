@@ -88,6 +88,14 @@ export function login(
       if (result.success) {
         setUserToken(result.data.token);
         setIsLoggedIn(true);
+        window.localStorage.setItem(
+          "user",
+          JSON.stringify({
+            username: `${username}`,
+            password: `${password}`,
+            token: `${result.data.token}`,
+          })
+        );
       } else if (result.error.message) {
         setError(result.error.message);
         setCallSuccess(false);

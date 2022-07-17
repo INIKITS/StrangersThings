@@ -26,7 +26,7 @@ const Posts = (props) => {
         <button id="search-button">Search</button>
       </span>
       <div id="post-area">
-        {allPosts.data.posts.map((post) => {
+        {allPosts.data?.posts.map((post) => {
           console.log("post", post);
           return (
             <div key={post._id} id="post-card">

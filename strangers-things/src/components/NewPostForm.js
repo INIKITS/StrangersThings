@@ -3,34 +3,23 @@ import { makeNewPost, getAllPosts } from "../api";
 import { useEffect } from "react";
 
 const NewPostForm = (props) => {
-  const {
-    allPosts,
-    setAllPosts,
-    setNewTitle,
-    setNewBody,
-    newTitle,
-    newBody,
-    userToken,
-  } = props;
+  const { setAllPosts, setNewTitle, setNewBody, newTitle, newBody, userToken } =
+    props;
 
   const [price, setPrice] = React.useState("");
   const [willDeliver, setWillDeliver] = React.useState(false);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const data = await getAllPosts();
-
-  //     setAllPosts(data.data.posts);
-  //   };
-  //   fetchPosts();
-  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("it (newpost) been clicked");
 
     makeNewPost(setAllPosts, newTitle, newBody, price, willDeliver, userToken);
+    // updatePosts();
   };
+
+  useEffect(() => {
+    getAllPosts(setAllPosts);
+  }, []);
 
   return (
     <>
