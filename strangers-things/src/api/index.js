@@ -3,15 +3,37 @@ import { useEffect } from "react";
 
 export const BASE_URL = `https://strangers-things.herokuapp.com/api/2204-ftb-web-pt`;
 
-export async function getAllPosts(setAllPosts) {
+export async function getAllPosts(setAllPosts, userToken) {
+  // if (userToken) {
   try {
-    const response = await fetch(`${BASE_URL}/posts`);
+    const response = await fetch(`${BASE_URL}/posts`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+        // body: JSON.stringify({
+        //   user: {
+        //     _id: `${userToken}`,
+        //   },
+        // }),
+      },
+    });
     const data = await response.json();
 
     return setAllPosts(data);
   } catch (error) {
     throw error;
   }
+  // }
+  //  else {
+  //   try {
+  //     const response = await fetch(`${BASE_URL}/posts`);
+  //     const data = await response.json();
+
+  //     return setAllPosts(data);
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 }
 
 export function registerNewUser(
@@ -44,6 +66,7 @@ export function registerNewUser(
           JSON.stringify({
             username: `${username}`,
             password: `${password}`,
+            _id: `${result.data._id}`,
             token: `${result.data.token}`,
           })
         );
@@ -93,6 +116,7 @@ export function login(
           JSON.stringify({
             username: `${username}`,
             password: `${password}`,
+            _id: `${result.data._id}`,
             token: `${result.data.token}`,
           })
         );
@@ -163,6 +187,43 @@ export function makeNewPost(
       //   };
       //   fetchPosts();
       // }, []);
+    })
+    .catch(console.error);
+}
+
+export function deletePost(postId, userToken) {
+  console.log("postId: ", postId);
+  fetch(`${BASE_URL}/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      return result;
+    })
+    .catch(console.error);
+}
+
+export function sendMessage(messageBody, postId, userToken) {
+  fetch(`${BASE_URL}/posts/${postId}/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
+    body: JSON.stringify({
+      message: {
+        content: `${messageBody}`,
+      },
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
     })
     .catch(console.error);
 }

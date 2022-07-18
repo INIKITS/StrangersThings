@@ -131,12 +131,12 @@ li {
   padding-left: 1rem;
 }
 
-#card-edit {
+.card-edit {
   grid-area: card-edit;
   margin-left: 1rem;
 }
 
-#card-delete {
+.card-delete {
   grid-area: card-delete;
   margin-left: 2rem;
 }

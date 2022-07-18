@@ -9,6 +9,7 @@ import {
   Profile,
   Posts,
   LoginForm,
+  NewMessageForm,
   NewUserForm,
   NewPostForm,
   Footer,
@@ -21,6 +22,8 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageId, setMessageId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [callSuccess, setCallSuccess] = useState(true);
   const [allPosts, setAllPosts] = useState([]);
@@ -78,10 +81,13 @@ const App = () => {
           element={
             <>
               <Posts
+                isLoggedIn={isLoggedIn}
                 setAllPosts={setAllPosts}
                 allPosts={allPosts}
                 isOwner={isOwner}
                 setIsOwner={setIsOwner}
+                userToken={userToken}
+                setMessageId={setMessageId}
               />
               {isLoggedIn ? (
                 <NewPostForm
@@ -136,6 +142,29 @@ const App = () => {
           exact
           path="/profile"
           element={<Profile userToken={userToken} />}
+        />
+
+        <Route
+          path=":posts/new-message"
+          element={
+            <>
+              <Posts
+                isLoggedIn={isLoggedIn}
+                setAllPosts={setAllPosts}
+                allPosts={allPosts}
+                isOwner={isOwner}
+                setIsOwner={setIsOwner}
+                userToken={userToken}
+                setMessageId={setMessageId}
+              />
+              <NewMessageForm
+                userToken={userToken}
+                message={message}
+                setMessage={setMessage}
+                messageId={messageId}
+              />
+            </>
+          }
         />
       </Routes>
 

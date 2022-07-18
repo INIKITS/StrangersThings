@@ -11,7 +11,6 @@ const NewPostForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("it (newpost) been clicked");
 
     makeNewPost(setAllPosts, newTitle, newBody, price, willDeliver, userToken);
     // updatePosts();

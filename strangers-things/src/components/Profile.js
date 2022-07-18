@@ -15,13 +15,21 @@ const Profile = (props) => {
   return (
     <>
       <div id="main-content">
-        <h1>{profileInfo.data?.username}</h1>
-        <div id="message-card">
-          <h2>Messages: </h2>
-          <h3>{profileInfo.data?.messages}</h3>
+        <h1>{profileInfo.data?.username}'s messages</h1>
+        <div>
+          <div id="message-card-container">
+            {profileInfo.data?.messages.map((message) => {
+              return (
+                <>
+                  <h3>Inbox: {message.fromUser.username}</h3>
+                  <div>{message.content}</div>
+                </>
+              );
+            })}
+          </div>
         </div>
-        <h2>Posts: </h2>
-        {profileInfo.data?.posts.map((post) => {
+        <h2>Outbox:</h2>
+        {/* {profileInfo.data?.posts.map((post) => {
           return (
             <>
               <div id="profile-post-card">
@@ -34,7 +42,7 @@ const Profile = (props) => {
               </div>
             </>
           );
-        })}
+        })} */}
       </div>
     </>
   );
