@@ -7,3 +7,5 @@ export { default as NewUserForm } from "./NewUserForm";
 export { default as NewPostForm } from "./NewPostForm";
 export { default as LoginForm } from "./LoginForm";
 export { default as Footer } from "./Footer";
+
+export { default as SearchPosts } from "./SearchPosts";

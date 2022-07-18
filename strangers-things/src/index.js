@@ -29,15 +29,11 @@ const App = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
 
-  console.log("userToken", userToken);
-  console.log("isLoggedIn", isLoggedIn);
-
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
       setIsLoggedIn(true);
       const userInfo = JSON.parse(user);
-      console.log("user", userInfo.token);
       setUserToken(userInfo.token);
     }
   }, []);
@@ -141,7 +137,7 @@ const App = () => {
         <Route
           exact
           path="/profile"
-          element={<Profile userToken={userToken} />}
+          element={<Profile username={username} userToken={userToken} />}
         />
 
         <Route

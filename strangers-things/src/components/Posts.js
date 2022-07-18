@@ -1,10 +1,11 @@
 import React from "react";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { deletePost, getAllPosts } from "../api";
 import { useNavigate } from "react-router-dom";
+import { SearchPosts } from "./";
 
 const Posts = (props) => {
-  console.log("getAllPosts", getAllPosts);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { allPosts, setAllPosts, userToken, isLoggedIn, setMessageId } = props;
 
@@ -13,6 +14,12 @@ const Posts = (props) => {
   const handleDelete = (id) => {
     deletePost(id, userToken);
     refreshPosts();
+  };
+
+  console.log("searchTerm", searchTerm);
+
+  const handleSearch = () => {
+    SearchPosts(allPosts.data, searchTerm);
   };
 
   let navigate = useNavigate();
@@ -25,17 +32,26 @@ const Posts = (props) => {
     getAllPosts(setAllPosts, userToken);
   }, []);
 
-  console.log("allPosts", allPosts);
-
   return (
     <div id="main-content">
       <span id="search-bar-area">
-        <input id="search-bar" type="text" placeholder="search posts"></input>
-        <button id="search-button">Search</button>
+        <input
+          id="search-bar"
+          type="text"
+          placeholder="search posts"
+          onChange={(event) => setSearchTerm(event.target.value)}
+        ></input>
+        <button
+          id="search-button"
+          onClick={(event) => {
+            handleSearch;
+          }}
+        >
+          Search
+        </button>
       </span>
       <div id="post-area">
         {allPosts?.data?.posts.map((post) => {
-          console.log("post", post);
           return (
             <div key={post._id} id="post-card">
               <span id="card-title">{post.title} </span>

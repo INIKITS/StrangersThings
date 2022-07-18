@@ -27,20 +27,6 @@ const LoginForm = (props) => {
       setError,
       setCallSuccess
     );
-
-    // if (result.success){
-    //   const response = await result.json();
-
-    //   const result = await response;
-
-    //   console.log('result', result)
-
-    // }else{
-
-    // setError(result.error.message)
-
-    // console.log('result', result)
-    // }
   };
 
   return (

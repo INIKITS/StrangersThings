@@ -58,7 +58,6 @@ export function registerNewUser(
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(["result", result]);
       if (result.data?.token) {
         setUserToken(result.data.token);
         window.localStorage.setItem(
@@ -72,7 +71,6 @@ export function registerNewUser(
         );
         setIsLoggedIn(true);
       } else if (result.error.message) {
-        console.log(result.error.message);
         setErrorMessage(result.error.message);
         setCallSuccess(false);
         setTimeout(() => {
@@ -156,9 +154,6 @@ export function makeNewPost(
   willDeliver,
   userToken
 ) {
-  console.log("willDeliver", willDeliver);
-  console.log("newpost called");
-
   fetch(`${BASE_URL}/posts`, {
     method: "POST",
     headers: {
@@ -176,23 +171,14 @@ export function makeNewPost(
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       getAllPosts();
 
-      // useEffect(() => {
-      //   const fetchPosts = async () => {
-      //     const data = await getAllPosts();
-
-      //     setAllPosts(data.data.posts);
-      //   };
-      //   fetchPosts();
-      // }, []);
+      return result;
     })
     .catch(console.error);
 }
 
 export function deletePost(postId, userToken) {
-  console.log("postId: ", postId);
   fetch(`${BASE_URL}/posts/${postId}`, {
     method: "DELETE",
     headers: {
@@ -202,7 +188,6 @@ export function deletePost(postId, userToken) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       return result;
     })
     .catch(console.error);
@@ -223,7 +208,7 @@ export function sendMessage(messageBody, postId, userToken) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
+      return result;
     })
     .catch(console.error);
 }

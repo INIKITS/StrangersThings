@@ -3,14 +3,12 @@ import { useEffect } from "react";
 import { getProfile } from "../api";
 
 const Profile = (props) => {
-  const { userToken } = props;
+  const { userToken, username } = props;
   const [profileInfo, setProfileInfo] = React.useState({});
 
   useEffect(() => {
     getProfile(userToken, setProfileInfo);
   }, []);
-
-  console.log("profileInfo", profileInfo);
 
   return (
     <>
@@ -18,10 +16,11 @@ const Profile = (props) => {
         <h1>{profileInfo.data?.username}'s messages</h1>
         <div>
           <div id="message-card-container">
+            <span> inbox: </span>
             {profileInfo.data?.messages.map((message) => {
               return (
                 <>
-                  <h3>Inbox: {message.fromUser.username}</h3>
+                  <h3> {message.fromUser.username}</h3>
                   <div>{message.content}</div>
                 </>
               );
